@@ -1,0 +1,60 @@
+* {
+    font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+h1 {
+    display: inline;
+}
+
+.timer {
+    font-size: 24px;
+}
+
+.view {
+    font-size: 16px;
+}
+
+button {
+    background: rgb(128, 18, 150);
+    color: gold;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.start-button {
+    display: flex;
+    font-size: 32px;
+    padding: 8px 32px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    margin-top: 24px;
+    align-items: center;
+}
+
+.start {
+    border: 3px purple solid;
+}
+
+.questions {
+    border: 3px blue solid;
+}
+
+.final-score {
+    border: 3px green solid;
+}
+
+.high-score {
+    border: 3px orange solid;
+}
