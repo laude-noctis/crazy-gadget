@@ -30,7 +30,6 @@ button {
 }
 
 .start-button {
-    display: flex;
     font-size: 32px;
     padding: 8px 32px;
 }
@@ -44,7 +43,13 @@ main {
 }
 
 .start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 3px purple solid;
+    height: 500px;
+    width: 800px;
 }
 
 .questions {
