@@ -1,5 +1,5 @@
 * {
-    font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+    font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 header {
@@ -15,18 +15,39 @@ h1 {
 }
 
 .timer {
+    font-style: serif;
     font-size: 24px;
 }
 
 .view {
-    font-size: 16px;
+    font-size: 20px;
+    background: #fff;
+    color: black;
+    border: none;
+}
+
+#question {
+    font: 24px;
+    border-bottom: black 2px solid;
+    margin-left: 10px;
+}
+
+.btn {
+    display: block;
+    background: rgb(128, 0, 75);
+    text-align: left;
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
 }
 
 button {
-    background: rgb(128, 18, 150);
-    color: gold;
+    background: rgb(128, 0, 75);
+    color: lightblue;
     border-radius: 8px;
     font-size: 16px;
+    border: white;
 }
 
 .start-button {
@@ -52,8 +73,9 @@ main {
     width: 800px;
 }
 
-.questions {
+.quiz {
     border: 3px blue solid;
+    width: 20%;
 }
 
 .final-score {
@@ -62,4 +84,8 @@ main {
 
 .high-score {
     border: 3px orange solid;
+}
+
+button:hover {
+    cursor: pointer;
 }
