@@ -19,11 +19,12 @@ h1 {
     font-size: 24px;
 }
 
-.view {
+#view {
     font-size: 20px;
     background: #fff;
     color: black;
     border: none;
+    text-decoration: none;
 }
 
 #question {

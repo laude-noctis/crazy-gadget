@@ -9,17 +9,19 @@
 
 <body>
     <header>
-        <button class="view">View High Scores</button>
+        <button class="view-card">
+            <a id="view" href="#highscore">View High Scores</a>
+        </button>
         <span id="timer">Timer: 90</span>
     </header>
 
     <main>
-        <section class="start">
+        <section class="start card">
             <h2>Play this coding Quiz Game to test your knowledge!</h2>
             <button id="start-button">Start</button> 
         </section>
 
-        <section class="quiz">
+        <section class="quiz card">
             <h2 id="question">Question</h2>
             <div class="answers">
                 <button class="btn">Answer 1</button>
@@ -29,13 +31,13 @@
             </div>
         </section>
 
-        <section class="final-score">
+        <section class="final-score smlcard">
             <h2>All Done!</h2>
             <h2 id="score">Your Score:</h2>
             <h2>Enter Name:</h2>
         </section>
 
-        <section class="high-score">
+        <section id="highscore" class="high-score smlcard">
             <h2>High Score!</h2>
             <ul></ul>
             <button id="return">Return</button>

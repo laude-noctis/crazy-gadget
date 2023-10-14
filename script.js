@@ -54,30 +54,30 @@ const startSection = document.getElementsByClassName("start");
 let seconds = 90;
 const timerElement = document.getElementById('timer');
 
-function hideQuiz () {
-    for (let i = 0; i < quizSection.length; ++i) {
-        quizSection[i].style.display = "none";
-    };
-    // hides the quiz section
-};
-function hideFinalScore () {
-    for (let i = 0; i < finalScoreSection.length; ++i) {
-        finalScoreSection[i].style.display = "none";
-    };
-    // hides the final-score section
-};
-function hideHighScore () {
-    for (let i = 0; i < highScoreSection.length; ++i) {
-        highScoreSection[i].style.display = "none";
-    };
-    // hides the high-score section 
-};
-function hideStart () {
-    for (let i = 0; i < startSection.length; ++i) {
-        startSection[i].style.display = "none";
-    };
-    // hides the start menu
-}
+// function hideQuiz () {
+//     for (let i = 0; i < quizSection.length; ++i) {
+//         quizSection[i].style.display = "none";
+//     };
+//     // hides the quiz section
+// };
+// function hideFinalScore () {
+//     for (let i = 0; i < finalScoreSection.length; ++i) {
+//         finalScoreSection[i].style.display = "none";
+//     };
+//     // hides the final-score section
+// };
+// function hideHighScore () {
+//     for (let i = 0; i < highScoreSection.length; ++i) {
+//         highScoreSection[i].style.display = "none";
+//     };
+//     // hides the high-score section 
+// };
+// function hideStart () {
+//     for (let i = 0; i < startSection.length; ++i) {
+//         startSection[i].style.display = "none";
+//     };
+//     // hides the start menu
+// }
 
 function startTimer() {
   const countdownTimer = setInterval(() => {
@@ -90,6 +90,10 @@ function startTimer() {
   }, 1000);
 };
 
+function startQuestions() {
+
+}
+
 const startBtn = document.getElementById("start-button");
 startBtn.addEventListener("click", function() {
     const quizSection = document.getElementsByClassName("quiz");
@@ -98,7 +102,9 @@ startBtn.addEventListener("click", function() {
     };
     hideStart();
     startTimer();
+    startQuestions();
 });
+
 
 hideQuiz();
 hideFinalScore();
