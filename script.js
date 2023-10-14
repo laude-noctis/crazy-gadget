@@ -43,15 +43,62 @@ const questions = [
             { text: "&", correct: false},
             { text: "_", correct: false}
         ]
-    }
+    },
 ];
-let quizQuestion = document.getElementById('question')
-let quizAnswer = document.getElementsByClassName('btn')
-var questionIndex = 0
+let quizQuestion = document.getElementById('question');
+let quizAnswer = document.getElementsByClassName('btn');
+const quizSection = document.getElementsByClassName("quiz");
+const finalScoreSection = document.getElementsByClassName("final-score");
+const highScoreSection = document.getElementsByClassName("high-score");
+const startSection = document.getElementsByClassName("start");
+let seconds = 90;
+const timerElement = document.getElementById('timer');
 
-showQuestion() {
-    let currentQuestion = questions[questionIndex];
-    questions.innerHTML = currentQuestion.question;
+function hideQuiz () {
+    for (let i = 0; i < quizSection.length; ++i) {
+        quizSection[i].style.display = "none";
+    };
+    // hides the quiz section
+};
+function hideFinalScore () {
+    for (let i = 0; i < finalScoreSection.length; ++i) {
+        finalScoreSection[i].style.display = "none";
+    };
+    // hides the final-score section
+};
+function hideHighScore () {
+    for (let i = 0; i < highScoreSection.length; ++i) {
+        highScoreSection[i].style.display = "none";
+    };
+    // hides the high-score section 
+};
+function hideStart () {
+    for (let i = 0; i < startSection.length; ++i) {
+        startSection[i].style.display = "none";
+    };
+    // hides the start menu
 }
 
-showQuestion()
+function startTimer() {
+  const countdownTimer = setInterval(() => {
+    seconds++;
+    timerElement.textContent = seconds;
+    if (countdown === 0) {
+        clearInterval(countdownTimer);
+    };
+  }, 90000);
+};
+
+const startBtn = document.getElementById("start-button");
+startBtn.addEventListener("click", function() {
+    const quizSection = document.getElementsByClassName("quiz");
+    for (let i = 0; i < quizSection.length; ++i) {
+        quizSection[i].style.display = "block";
+    };
+    hideStart();
+    startTimer();
+});
+
+hideQuiz();
+hideFinalScore();
+hideHighScore();

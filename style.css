@@ -50,7 +50,7 @@ button {
     border: white;
 }
 
-.start-button {
+#start-button {
     font-size: 32px;
     padding: 8px 32px;
 }
