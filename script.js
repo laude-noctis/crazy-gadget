@@ -82,7 +82,7 @@ function hideStart () {
 function startTimer() {
   const countdownTimer = setInterval(() => {
     seconds++;
-    timerElement.textContent = seconds;
+    timerElement.textContent = "Timer: " + seconds;
     if (countdown === 0) {
         clearInterval(countdownTimer);
     };
