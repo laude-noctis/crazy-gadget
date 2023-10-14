@@ -81,12 +81,13 @@ function hideStart () {
 
 function startTimer() {
   const countdownTimer = setInterval(() => {
-    seconds++;
+    seconds--;
     timerElement.textContent = "Timer: " + seconds;
-    if (countdown === 0) {
+    if (countdownTimer === 0) {
         clearInterval(countdownTimer);
+        console.log("Countdown finished");
     };
-  }, 90000);
+  }, 1000);
 };
 
 const startBtn = document.getElementById("start-button");
