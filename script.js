@@ -47,3 +47,11 @@ const questions = [
 ];
 let quizQuestion = document.getElementById('question')
 let quizAnswer = document.getElementsByClassName('btn')
+var questionIndex = 0
+
+showQuestion() {
+    let currentQuestion = questions[questionIndex];
+    questions.innerHTML = currentQuestion.question;
+}
+
+showQuestion()
