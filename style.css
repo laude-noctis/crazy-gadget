@@ -19,9 +19,8 @@ h1 {
     font-size: 24px;
 }
 
-#view {
+.viewbtn {
     font-size: 20px;
-    background: #fff;
     color: black;
     border: none;
     text-decoration: none;
@@ -43,13 +42,14 @@ h1 {
     width: 200px;
 }
 
-button {
+.quizbtn {
     background: rgb(128, 0, 75);
     color: lightblue;
     border-radius: 8px;
     font-size: 16px;
     border: white;
 }
+
 
 #start-button {
     font-size: 32px;

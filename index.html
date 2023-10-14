@@ -10,7 +10,7 @@
 <body>
     <header>
         <button class="view-card">
-            <a id="view" href="#highscore">View High Scores</a>
+            <a id="view" class="viewbtn" href="#highscore">View High Scores</a>
         </button>
         <span id="timer">Timer: 90</span>
     </header>
@@ -18,16 +18,16 @@
     <main>
         <section class="start card">
             <h2>Play this coding Quiz Game to test your knowledge!</h2>
-            <button id="start-button">Start</button> 
+            <button id="start-button" class="quizbtn">Start</button> 
         </section>
 
         <section class="quiz card">
-            <h2 id="question">Question</h2>
+            <h2 id="question"></h2>
             <div class="answers">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
+                <button class="btn quizbtn">Answer 1</button>
+                <button class="btn quizbtn">Answer 2</button>
+                <button class="btn quizbtn">Answer 3</button>
+                <button class="btn quizbtn">Answer 4</button>
             </div>
         </section>
 
@@ -40,8 +40,8 @@
         <section id="highscore" class="high-score smlcard">
             <h2>High Score!</h2>
             <ul></ul>
-            <button id="return">Return</button>
-            <button id="clear">Clear High Scores</button>
+            <button id="return" class="quizbtn">Return</button>
+            <button id="clear" class="quizbtn">Clear High Scores</button>
         </section>
     </main>
     <script src="./script.js"></script>

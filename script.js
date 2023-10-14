@@ -1,6 +1,6 @@
 const questions = [
     {
-        question: "Where in the HTML tags do you add <script>?",
+        question: "Where in the HTML tags do you add the script tag?",
         answers: [
             { text: "<header>", correct: false},
             { text: "<main>", correct: false},
@@ -53,32 +53,47 @@ const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
 let seconds = 90;
 const timerElement = document.getElementById('timer');
+const questionIndex = 0
 
-// function hideQuiz () {
-//     for (let i = 0; i < quizSection.length; ++i) {
-//         quizSection[i].style.display = "none";
-//     };
-//     // hides the quiz section
-// };
-// function hideFinalScore () {
-//     for (let i = 0; i < finalScoreSection.length; ++i) {
-//         finalScoreSection[i].style.display = "none";
-//     };
-//     // hides the final-score section
-// };
-// function hideHighScore () {
-//     for (let i = 0; i < highScoreSection.length; ++i) {
-//         highScoreSection[i].style.display = "none";
-//     };
-//     // hides the high-score section 
-// };
-// function hideStart () {
-//     for (let i = 0; i < startSection.length; ++i) {
-//         startSection[i].style.display = "none";
-//     };
-//     // hides the start menu
-// }
+function hideQuiz () {
+    for (let i = 0; i < quizSection.length; ++i) {
+        quizSection[i].style.display = "none";
+    };
+    // hides the quiz section
+};
+function hideFinalScore () {
+    for (let i = 0; i < finalScoreSection.length; ++i) {
+        finalScoreSection[i].style.display = "none";
+    };
+    // hides the final-score section
+};
+function hideHighScore () {
+    for (let i = 0; i < highScoreSection.length; ++i) {
+        highScoreSection[i].style.display = "none";
+    };
+    // hides the high-score section 
+};
+function hideStart () {
+    for (let i = 0; i < startSection.length; ++i) {
+        startSection[i].style.display = "none";
+    };
+    // hides the start menu
+}
 
+function showQuestions() {
+    let replaceQuestions = questions.map(item => item.question);
+    replaceQuestions.forEach(question => {
+        quizQuestion.innerHTML = question;
+      });
+
+    let replaceAnswers = questions.map(item => item.answers);
+    replaceAnswers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+    });
+}
+showQuestions()
 function startTimer() {
   const countdownTimer = setInterval(() => {
     seconds--;
@@ -88,11 +103,8 @@ function startTimer() {
         console.log("Countdown finished");
     };
   }, 1000);
+  // starts countdown timer
 };
-
-function startQuestions() {
-
-}
 
 const startBtn = document.getElementById("start-button");
 startBtn.addEventListener("click", function() {
@@ -102,7 +114,7 @@ startBtn.addEventListener("click", function() {
     };
     hideStart();
     startTimer();
-    startQuestions();
+    showQuestions();
 });
 
 
