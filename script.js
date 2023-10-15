@@ -70,7 +70,6 @@ function nextQuestion() {
                 showQuestions();
             } else {
                 showFinalScore()
-                // showFinalScore()
             }
         });
     }
@@ -128,7 +127,7 @@ function showHighScore() {
 const highScoreRecord= [];
 
 function scoreList() {
-    const scoreListElement = document.getElementById("scoreList");
+    const scoreListElement = document.getElementById("listScore");
   
     for (let i = 0; i < highScoreRecord.length; ++i) {
       const highScoreRecords = highScoreRecord[i];
@@ -136,7 +135,7 @@ function scoreList() {
       li.textContent = highScoreRecords;
       scoreListElement.appendChild(li);
     }
-  }
+}
 
 function showFinalScore() {
     for (let i = 0; i < finalScoreSection.length; ++i) {
@@ -151,6 +150,16 @@ function showFinalScore() {
         scoreList();
         showHighScore();
     });
+}
+
+function viewHighScore() {
+    let viewbtn = document.getElementByClassName("view");
+    viewbtn.addEventListener("click", function() {
+        hideQuiz();
+        hideFinalScore();
+        hideStart();
+        showHighScore();
+    })
 }
 
 function hideQuiz() {
@@ -180,3 +189,5 @@ function hideStart() {
 hideQuiz()
 hideFinalScore();
 hideHighScore();
+
+viewHighScore();

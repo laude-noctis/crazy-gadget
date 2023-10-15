@@ -24,10 +24,11 @@ h1 {
     font-size: 32px;
 }
 
-.viewbtn {
+.view {
     font-size: 20px;
-    color: black;
+    color: goldenrod;
     border: none;
+    background: white;
     text-decoration: none;
 }
 
