@@ -56,6 +56,30 @@ const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
 
+function hideQuiz() {
+    for (let i = 0; i < quizSection.length; ++i) {
+        quizSection[i].style.display = "none";
+    };
+    // hides the quiz section
+};
+function hideFinalScore() {
+    for (let i = 0; i < finalScoreSection.length; ++i) {
+        finalScoreSection[i].style.display = "none";
+    };
+    // hides the final-score section
+};
+function hideHighScore() {
+    for (let i = 0; i < highScoreSection.length; ++i) {
+        highScoreSection[i].style.display = "none";
+    };
+};
+function hideStart() {
+    for (let i = 0; i < startSection.length; ++i) {
+        startSection[i].style.display = "none";
+    };
+    // hides the start menu
+}
+
 function nextQuestion() {
     const btns = document.getElementsByClassName('btn');
     for (let i = 0; i < btns.length; ++i) {
@@ -153,41 +177,35 @@ function showFinalScore() {
 }
 
 function viewHighScore() {
-    let viewbtn = document.getElementByClassName("view");
+    let viewbtn = document.querySelector(".view");
     viewbtn.addEventListener("click", function() {
         hideQuiz();
         hideFinalScore();
-        hideStart();
+        hideStart(); 
         showHighScore();
     })
 }
 
-function hideQuiz() {
-    for (let i = 0; i < quizSection.length; ++i) {
-        quizSection[i].style.display = "none";
-    };
-    // hides the quiz section
-};
-function hideFinalScore() {
-    for (let i = 0; i < finalScoreSection.length; ++i) {
-        finalScoreSection[i].style.display = "none";
-    };
-    // hides the final-score section
-};
-function hideHighScore() {
-    for (let i = 0; i < highScoreSection.length; ++i) {
-        highScoreSection[i].style.display = "none";
-    };
-};
-function hideStart() {
+function showStart() {
     for (let i = 0; i < startSection.length; ++i) {
-        startSection[i].style.display = "none";
+        startSection[i].style.display = "block";
     };
-    // hides the start menu
 }
+
+function returnBtn() {
+    let returnbtn = document.querySelecter(".return");
+    returnbtn.addEventListener("click", function() {
+        hideQuiz();
+        hideHighScore();
+        hideFinalScore();
+        showStart();
+    })
+}
+
 
 hideQuiz()
 hideFinalScore();
 hideHighScore();
 
 viewHighScore();
+returnBtn()
