@@ -46,7 +46,7 @@ const questions = [
     },
 ];
 let quizQuestion = document.getElementById('question');
-let quizAnswer = document.getElementsByClassName('btn');
+let quizAnswer = document.getElementsByClassName('answers');
 const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
@@ -81,29 +81,31 @@ function hideStart () {
 }
 
 function showQuestions() {
-    let replaceQuestions = questions.map(item => item.question);
-    replaceQuestions.forEach(question => {
-        quizQuestion.innerHTML = question;
-      });
+    let currentQuestion = questions[questionIndex];
+    let questionNo = questionIndex + 1;
+    quizQuestion.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    let replaceAnswers = questions.map(item => item.answers);
-    replaceAnswers.forEach(answer => {
+    function appendButton(button) {
+        quizAnswer.appendChild(button)
+    }
+
+    currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
+        appendButton(button);
     });
 }
-showQuestions()
+
 function startTimer() {
   const countdownTimer = setInterval(() => {
     seconds--;
     timerElement.textContent = "Timer: " + seconds;
-    if (countdownTimer === 0) {
+    if (seconds === 0) {
         clearInterval(countdownTimer);
         console.log("Countdown finished");
     };
   }, 1000);
-  // starts countdown timer
 };
 
 const startBtn = document.getElementById("start-button");
