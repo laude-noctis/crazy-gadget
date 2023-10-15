@@ -47,7 +47,7 @@ const questions = [
 ];
 let quizQuestion = document.getElementById('question');
 let quizAnswer = document.getElementById('answers');
-let seconds = 90;
+let seconds = 60;
 let score = 0;
 let questionIndex = 0;
 const timerElement = document.getElementById('timer');
@@ -99,6 +99,12 @@ function nextQuestion() {
     }
 }
 
+function removeBtns() {
+    while (quizAnswer.firstChild) {
+        quizAnswer.removeChild(quizAnswer.firstChild)
+    }
+}
+
 function showQuestions() {
     let currentQuestion = questions[questionIndex];
     quizQuestion.innerHTML = currentQuestion.question;
@@ -113,12 +119,6 @@ function showQuestions() {
     nextQuestion();
 }
 
-function removeBtns() {
-    while (quizAnswer.firstChild) {
-        quizAnswer.removeChild(quizAnswer.firstChild)
-    }
-}
-
 function startTimer() {
     const countdownTimer = setInterval(() => {
         seconds--;
@@ -130,16 +130,18 @@ function startTimer() {
     }, 1000);
 };
 
+
 const startBtn = document.getElementById("start-button");
 startBtn.addEventListener("click", function () {
     const quizSection = document.getElementsByClassName("quiz");
     for (let i = 0; i < quizSection.length; ++i) {
-        quizSection[i].style.display = "block";
+    quizSection[i].style.display = "block";
     };
     hideStart();
     startTimer();
     showQuestions();
 });
+
 
 function showHighScore() {
     for (let i = 0; i < highScoreSection.length; ++i) {
@@ -188,24 +190,20 @@ function viewHighScore() {
 
 function showStart() {
     for (let i = 0; i < startSection.length; ++i) {
-        startSection[i].style.display = "block";
+        startSection[i].style.display = "flex";
     };
 }
 
 function returnBtn() {
-    let returnbtn = document.querySelecter(".return");
+    let returnbtn = document.querySelector(".return");
     returnbtn.addEventListener("click", function() {
-        hideQuiz();
-        hideHighScore();
-        hideFinalScore();
-        showStart();
+        location.reload();
     })
 }
-
 
 hideQuiz()
 hideFinalScore();
 hideHighScore();
 
 viewHighScore();
-returnBtn()
+returnBtn();

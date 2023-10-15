@@ -81,8 +81,6 @@ main {
     justify-content: center;
     align-items: center;
     border: 3px purple solid;
-    height: 500px;
-    width: 800px;
 }
 
 .response {
