@@ -80,7 +80,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 3px purple solid;
 }
 
 .response {
@@ -89,18 +88,6 @@ main {
     margin-right: 10px;
     border-top: 2px black solid;
     font-style: italic;
-}
-
-.quiz {
-    border: 3px blue solid;
-}
-
-.final-score {
-    border: 3px green solid;
-}
-
-.high-score {
-    border: 3px orange solid;
 }
 
 button:hover {

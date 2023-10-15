@@ -57,8 +57,6 @@ const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
 
-// write gameover function later
-
 function hideQuiz() {
     for (let i = 0; i < quizSection.length; ++i) {
         quizSection[i].style.display = "none";
@@ -94,6 +92,7 @@ function nextQuestion() {
                 response.innerHTML = ("Correct!");
             } else {
                 response.innerHTML = ("Wrong!");
+                seconds -= 7;
             }
             questionIndex++;
             if (questionIndex < questions.length) {
@@ -146,7 +145,7 @@ function startTimer() {
         if (seconds === 0) {
             clearInterval(countdownTimer);
             console.log("Countdown finished");
-            gameOver(); //here bestie for that function
+            gameOver();
         }
 
         if (questionIndex >= questions.length) {
