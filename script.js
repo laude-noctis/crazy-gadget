@@ -50,11 +50,14 @@ let quizAnswer = document.getElementById('answers');
 let seconds = 60;
 let score = 0;
 let questionIndex = 0;
+let response = document.querySelector(".response")
 const timerElement = document.getElementById('timer');
 const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
+
+// write gameover function later
 
 function hideQuiz() {
     for (let i = 0; i < quizSection.length; ++i) {
@@ -88,6 +91,9 @@ function nextQuestion() {
             const selectedAnswer = currentQuestion.answers[i];
             if (selectedAnswer.correct) {
                 ++score;
+                response.innerHTML = ("Correct!");
+            } else {
+                response.innerHTML = ("Wrong!");
             }
             questionIndex++;
             if (questionIndex < questions.length) {
@@ -95,8 +101,8 @@ function nextQuestion() {
             } else {
                 showFinalScore()
             }
-        });
-    }
+        }
+    )};
 }
 
 function removeBtns() {
@@ -119,14 +125,27 @@ function showQuestions() {
     nextQuestion();
 }
 
+function getScore() {
+    let remainingTime = seconds;
+    score = remainingTime;
+    console.log(remainingTime)
+}
+
 function startTimer() {
     const countdownTimer = setInterval(() => {
         seconds--;
         timerElement.textContent = "Timer: " + seconds;
+
         if (seconds === 0) {
             clearInterval(countdownTimer);
             console.log("Countdown finished");
-        };
+            gameOver(); //here bestie for that function
+        }
+
+        if (questionIndex >= questions.length) {
+            clearInterval(countdownTimer);
+            getScore();
+        }
     }, 1000);
 };
 
