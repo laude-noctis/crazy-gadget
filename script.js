@@ -46,7 +46,7 @@ const questions = [
     },
 ];
 let quizQuestion = document.getElementById('question');
-let quizAnswer = document.getElementsByClassName('answers');
+let quizAnswer = document.getElementById('answers');
 const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
@@ -54,6 +54,41 @@ const startSection = document.getElementsByClassName("start");
 let seconds = 90;
 const timerElement = document.getElementById('timer');
 const questionIndex = 0
+
+
+function showQuestions() {
+    let currentQuestion = questions[questionIndex];
+    quizQuestion.innerHTML = currentQuestion.question;
+  
+    currentQuestion.answers.forEach(answer => {
+      const button = document.createElement("button");
+      button.innerHTML = answer.text;
+      button.classList.add("btn");
+      quizAnswer.appendChild(button);
+    });
+  }
+
+function startTimer() {
+  const countdownTimer = setInterval(() => {
+      seconds--;
+      timerElement.textContent = "Timer: " + seconds;
+      if (seconds === 0) {
+          clearInterval(countdownTimer);
+          console.log("Countdown finished");
+        };
+    }, 1000);
+};
+
+const startBtn = document.getElementById("start-button");
+startBtn.addEventListener("click", function() {
+    const quizSection = document.getElementsByClassName("quiz");
+    for (let i = 0; i < quizSection.length; ++i) {
+        quizSection[i].style.display = "block";
+    };
+    hideStart();
+    startTimer();
+    showQuestions();
+});
 
 function hideQuiz () {
     for (let i = 0; i < quizSection.length; ++i) {
@@ -80,46 +115,6 @@ function hideStart () {
     // hides the start menu
 }
 
-function showQuestions() {
-    let currentQuestion = questions[questionIndex];
-    let questionNo = questionIndex + 1;
-    quizQuestion.innerHTML = questionNo + ". " + currentQuestion.question;
-
-    function appendButton(button) {
-        quizAnswer.appendChild(button)
-    }
-
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        appendButton(button);
-    });
-}
-
-function startTimer() {
-  const countdownTimer = setInterval(() => {
-    seconds--;
-    timerElement.textContent = "Timer: " + seconds;
-    if (seconds === 0) {
-        clearInterval(countdownTimer);
-        console.log("Countdown finished");
-    };
-  }, 1000);
-};
-
-const startBtn = document.getElementById("start-button");
-startBtn.addEventListener("click", function() {
-    const quizSection = document.getElementsByClassName("quiz");
-    for (let i = 0; i < quizSection.length; ++i) {
-        quizSection[i].style.display = "block";
-    };
-    hideStart();
-    startTimer();
-    showQuestions();
-});
-
-
-hideQuiz();
+hideQuiz()
 hideFinalScore();
 hideHighScore();
