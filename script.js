@@ -125,6 +125,13 @@ function showQuestions() {
     nextQuestion();
 }
 
+function gameOver() {
+    hideQuiz();
+    hideHighScore();
+    hideStart();
+    showFinalScore();
+}
+
 function getScore() {
     let remainingTime = seconds;
     score = remainingTime;
