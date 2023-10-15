@@ -45,6 +45,10 @@ h1 {
     padding: 10px;
     margin: 10px;
     width: 200px;
+    color: lightblue;
+    border-radius: 8px;
+    font-size: 16px;
+    border: white;
 }
 
 .quizbtn {

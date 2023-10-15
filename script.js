@@ -2,10 +2,10 @@ const questions = [
     {
         question: "Where in the HTML tags do you add the script tag?",
         answers: [
-            { text: "<header>", correct: false},
-            { text: "<main>", correct: false},
-            { text: "<body>", correct: true},
-            { text: "<head>", correct: false}
+            { text: "header", correct: false},
+            { text: "main", correct: false},
+            { text: "body", correct: true},
+            { text: "head", correct: false}
         ]
     },
     {
@@ -47,26 +47,49 @@ const questions = [
 ];
 let quizQuestion = document.getElementById('question');
 let quizAnswer = document.getElementById('answers');
+let seconds = 90;
+let score = 0;
+let questionIndex = 0;
+const timerElement = document.getElementById('timer');
 const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
-let seconds = 90;
-const timerElement = document.getElementById('timer');
-const questionIndex = 0
+const btnSelector = document.getElementsByClassName("btn")
 
+function moveQuestion() {
+    let nextQuestionIndex = questionIndex + 1;
+}
 
 function showQuestions() {
     let currentQuestion = questions[questionIndex];
     quizQuestion.innerHTML = currentQuestion.question;
-  
+    
+    removeBtns();
     currentQuestion.answers.forEach(answer => {
       const button = document.createElement("button");
       button.innerHTML = answer.text;
       button.classList.add("btn");
       quizAnswer.appendChild(button);
     });
-  }
+    nextQuestion();
+}
+
+function removeBtns() {
+    while(quizAnswer.firstChild){
+        quizAnswer.removeChild(quizAnswer.firstChild)
+    }
+}
+
+function nextQuestion() {
+    btnSelector.addEventListener("click", function next() {
+        if (correct) {
+            moveQuestion()
+        } else {
+            moveQuestion()
+        }
+    })
+}
 
 function startTimer() {
   const countdownTimer = setInterval(() => {
