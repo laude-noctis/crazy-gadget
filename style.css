@@ -35,6 +35,7 @@ h1 {
     font: 24px;
     border-bottom: black 2px solid;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 .btn {
@@ -83,9 +84,16 @@ main {
     width: 800px;
 }
 
+.response {
+    font-size: 32px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-top: 2px black solid;
+    font-style: italic;
+}
+
 .quiz {
     border: 3px blue solid;
-    /* width: 20%; */
 }
 
 .final-score {

@@ -27,17 +27,22 @@
                 <button class="btn">Answer 3</button>
                 <button class="btn">Answer 4</button>
             </div>
+            <p class="response"></p>
         </section>
 
-        <section class="final-score smlcard">
+        <section class="final-score card">
             <h2>All Done!</h2>
             <h2 id="score">Your Score:</h2>
             <h2>Enter Name:</h2>
         </section>
 
-        <section id="highscore" class="high-score smlcard">
-            <h2>High Score!</h2>
-            <ul></ul>
+        <section id="highscore" class="high-score card">
+            <h2>High Scores!</h2>
+            <form id="highscoretracker">
+                <label>Add Your Name: </label>
+                <input type="text" placeholder="Name Lastname" id="inputtext"/>
+            </form>
+            <ul id="score-list"></ul>
             <button id="return" class="quizbtn">Return</button>
             <button id="clear" class="quizbtn">Clear High Scores</button>
         </section>

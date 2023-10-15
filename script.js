@@ -55,10 +55,26 @@ const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
-const btnSelector = document.getElementsByClassName("btn")
 
-function moveQuestion() {
-    let nextQuestionIndex = questionIndex + 1;
+function nextQuestion() {
+    const btns = document.getElementsByClassName('btn');
+    for (let i = 0; i < btns.length; ++i) {
+      btns[i].addEventListener('click', function() {
+        const currentQuestion = questions[questionIndex];
+        const selectedAnswer = currentQuestion.answers[i];
+        if (selectedAnswer.correct) {
+          ++score;
+        }
+        questionIndex++;
+        if (questionIndex < questions.length) {
+          showQuestions();
+        } else {
+            showFinalScore()
+          // All questions have been answered, show the final score or submit the quiz
+          // You can add your logic here
+        }
+      });
+    }
 }
 
 function showQuestions() {
@@ -79,16 +95,6 @@ function removeBtns() {
     while(quizAnswer.firstChild){
         quizAnswer.removeChild(quizAnswer.firstChild)
     }
-}
-
-function nextQuestion() {
-    btnSelector.addEventListener("click", function next() {
-        if (correct) {
-            moveQuestion()
-        } else {
-            moveQuestion()
-        }
-    })
 }
 
 function startTimer() {
@@ -113,6 +119,26 @@ startBtn.addEventListener("click", function() {
     showQuestions();
 });
 
+var highScoreRecord = []
+var scoreList = document.getElementById("#score-list")
+function showFinalScore() {
+    for (let i = 0; i < highScoreSection.length; ++i) {
+        highScoreSection[i].style.display = "block";
+    };
+    hideQuiz();
+    function highScoreList() {
+        for (let i = 0; i < highScoreRecord.length; ++i) {
+            var highScoreRecords = highScoreRecord[i];
+
+            var li = document.createElement("li");
+            li.textContent = highScoreRecords;
+
+            scoreList.appendChild(li);
+        }
+    }
+    highScoreList();
+}
+
 function hideQuiz () {
     for (let i = 0; i < quizSection.length; ++i) {
         quizSection[i].style.display = "none";
@@ -129,7 +155,6 @@ function hideHighScore () {
     for (let i = 0; i < highScoreSection.length; ++i) {
         highScoreSection[i].style.display = "none";
     };
-    // hides the high-score section 
 };
 function hideStart () {
     for (let i = 0; i < startSection.length; ++i) {
