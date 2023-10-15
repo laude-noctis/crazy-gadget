@@ -2,46 +2,46 @@ const questions = [
     {
         question: "Where in the HTML tags do you add the script tag?",
         answers: [
-            { text: "header", correct: false},
-            { text: "main", correct: false},
-            { text: "body", correct: true},
-            { text: "head", correct: false}
+            { text: "header", correct: false },
+            { text: "main", correct: false },
+            { text: "body", correct: true },
+            { text: "head", correct: false }
         ]
     },
     {
         question: "JavaScript is a ____-side programming language?",
         answers: [
-            { text: "Client", correct: false},
-            { text: "Server", correct: false},
-            { text: "Neither", correct: false},
-            { text: "Client and Server", correct: true}
+            { text: "Client", correct: false },
+            { text: "Server", correct: false },
+            { text: "Neither", correct: false },
+            { text: "Client and Server", correct: true }
         ]
     },
     {
         question: "How do you open a confirm window in JavaScript?",
         answers: [
-            { text: "confirm()", correct: true},
-            { text: "open.confirm()", correct: false},
-            { text: "confirm.open()", correct: false},
-            { text: "openconfirm()", correct: false}
+            { text: "confirm()", correct: true },
+            { text: "open.confirm()", correct: false },
+            { text: "confirm.open()", correct: false },
+            { text: "openconfirm()", correct: false }
         ]
     },
     {
         question: "Which of the following is used for assigning a value to a variable?",
         answers: [
-            { text: "*", correct: false},
-            { text: "+", correct: false},
-            { text: "=", correct: true},
-            { text: "-", correct: false}
+            { text: "*", correct: false },
+            { text: "+", correct: false },
+            { text: "=", correct: true },
+            { text: "-", correct: false }
         ]
     },
     {
         question: "Which symbol is use to target everything in a CSS stylesheet?",
         answers: [
-            { text: "~", correct: false},
-            { text: "*", correct: true},
-            { text: "&", correct: false},
-            { text: "_", correct: false}
+            { text: "~", correct: false },
+            { text: "*", correct: true },
+            { text: "&", correct: false },
+            { text: "_", correct: false }
         ]
     },
 ];
@@ -59,57 +59,56 @@ const startSection = document.getElementsByClassName("start");
 function nextQuestion() {
     const btns = document.getElementsByClassName('btn');
     for (let i = 0; i < btns.length; ++i) {
-      btns[i].addEventListener('click', function() {
-        const currentQuestion = questions[questionIndex];
-        const selectedAnswer = currentQuestion.answers[i];
-        if (selectedAnswer.correct) {
-          ++score;
-        }
-        questionIndex++;
-        if (questionIndex < questions.length) {
-          showQuestions();
-        } else {
-            showFinalScore()
-          // All questions have been answered, show the final score or submit the quiz
-          // You can add your logic here
-        }
-      });
+        btns[i].addEventListener('click', function () {
+            const currentQuestion = questions[questionIndex];
+            const selectedAnswer = currentQuestion.answers[i];
+            if (selectedAnswer.correct) {
+                ++score;
+            }
+            questionIndex++;
+            if (questionIndex < questions.length) {
+                showQuestions();
+            } else {
+                showFinalScore()
+                // showFinalScore()
+            }
+        });
     }
 }
 
 function showQuestions() {
     let currentQuestion = questions[questionIndex];
     quizQuestion.innerHTML = currentQuestion.question;
-    
+
     removeBtns();
     currentQuestion.answers.forEach(answer => {
-      const button = document.createElement("button");
-      button.innerHTML = answer.text;
-      button.classList.add("btn");
-      quizAnswer.appendChild(button);
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        quizAnswer.appendChild(button);
     });
     nextQuestion();
 }
 
 function removeBtns() {
-    while(quizAnswer.firstChild){
+    while (quizAnswer.firstChild) {
         quizAnswer.removeChild(quizAnswer.firstChild)
     }
 }
 
 function startTimer() {
-  const countdownTimer = setInterval(() => {
-      seconds--;
-      timerElement.textContent = "Timer: " + seconds;
-      if (seconds === 0) {
-          clearInterval(countdownTimer);
-          console.log("Countdown finished");
+    const countdownTimer = setInterval(() => {
+        seconds--;
+        timerElement.textContent = "Timer: " + seconds;
+        if (seconds === 0) {
+            clearInterval(countdownTimer);
+            console.log("Countdown finished");
         };
     }, 1000);
 };
 
 const startBtn = document.getElementById("start-button");
-startBtn.addEventListener("click", function() {
+startBtn.addEventListener("click", function () {
     const quizSection = document.getElementsByClassName("quiz");
     for (let i = 0; i < quizSection.length; ++i) {
         quizSection[i].style.display = "block";
@@ -119,44 +118,59 @@ startBtn.addEventListener("click", function() {
     showQuestions();
 });
 
-var highScoreRecord = []
-var scoreList = document.getElementById("#score-list")
-function showFinalScore() {
+function showHighScore() {
     for (let i = 0; i < highScoreSection.length; ++i) {
         highScoreSection[i].style.display = "block";
     };
-    hideQuiz();
-    function highScoreList() {
-        for (let i = 0; i < highScoreRecord.length; ++i) {
-            var highScoreRecords = highScoreRecord[i];
+    hideFinalScore();
+};
 
-            var li = document.createElement("li");
-            li.textContent = highScoreRecords;
+const highScoreRecord= [];
 
-            scoreList.appendChild(li);
-        }
+function scoreList() {
+    const scoreListElement = document.getElementById("scoreList");
+  
+    for (let i = 0; i < highScoreRecord.length; ++i) {
+      const highScoreRecords = highScoreRecord[i];
+      const li = document.createElement("li");
+      li.textContent = highScoreRecords;
+      scoreListElement.appendChild(li);
     }
-    highScoreList();
+  }
+
+function showFinalScore() {
+    for (let i = 0; i < finalScoreSection.length; ++i) {
+        finalScoreSection[i].style.display = "block";
+    };
+
+    hideQuiz();
+
+    let formId = document.getElementById("scoretracker");
+    formId.addEventListener("submit", function (event) {
+        event.preventDefault();
+        scoreList();
+        showHighScore();
+    });
 }
 
-function hideQuiz () {
+function hideQuiz() {
     for (let i = 0; i < quizSection.length; ++i) {
         quizSection[i].style.display = "none";
     };
     // hides the quiz section
 };
-function hideFinalScore () {
+function hideFinalScore() {
     for (let i = 0; i < finalScoreSection.length; ++i) {
         finalScoreSection[i].style.display = "none";
     };
     // hides the final-score section
 };
-function hideHighScore () {
+function hideHighScore() {
     for (let i = 0; i < highScoreSection.length; ++i) {
         highScoreSection[i].style.display = "none";
     };
 };
-function hideStart () {
+function hideStart() {
     for (let i = 0; i < startSection.length; ++i) {
         startSection[i].style.display = "none";
     };

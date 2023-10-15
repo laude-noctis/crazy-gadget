@@ -33,16 +33,15 @@
         <section class="final-score card">
             <h2>All Done!</h2>
             <h2 id="score">Your Score:</h2>
-            <h2>Enter Name:</h2>
+            <form id="scoretracker">
+                <label>Add Your Name: </label>
+                <input type="text" placeholder="Name Lastname" id="inputtext"/>
+            </form>
         </section>
 
         <section id="highscore" class="high-score card">
             <h2>High Scores!</h2>
-            <form id="highscoretracker">
-                <label>Add Your Name: </label>
-                <input type="text" placeholder="Name Lastname" id="inputtext"/>
-            </form>
-            <ul id="score-list"></ul>
+            <ul id="scoreList"></ul>
             <button id="return" class="quizbtn">Return</button>
             <button id="clear" class="quizbtn">Clear High Scores</button>
         </section>
