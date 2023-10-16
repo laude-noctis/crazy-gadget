@@ -61,6 +61,7 @@ const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
 const displayScore = document.getElementById("score")
 
+// functions to hide each section of the page
 function hideQuiz() {
     for (let i = 0; i < quizSection.length; ++i) {
         quizSection[i].style.display = "none";
@@ -85,7 +86,7 @@ function hideStart() {
     // hides the start menu
 }
 
-
+// function that displays the next question with answers and keeps track if answered correctly
 function nextQuestion() {
     const btns = document.getElementsByClassName('btn');
     for (let i = 0; i < btns.length; ++i) {
@@ -110,12 +111,14 @@ function nextQuestion() {
     };
 }
 
+// removes the htmlpage added buttons
 function removeBtns() {
     while (quizAnswer.firstChild) {
         quizAnswer.removeChild(quizAnswer.firstChild)
     }
 }
 
+// displays the question
 function showQuestions() {
     let currentQuestion = questions[questionIndex];
     quizQuestion.innerHTML = currentQuestion.question;
@@ -130,6 +133,7 @@ function showQuestions() {
     nextQuestion();
 }
 
+// function if time runs out
 function gameOver() {
     hideQuiz();
     hideHighScore();
@@ -137,18 +141,20 @@ function gameOver() {
     showFinalScore();
 }
 
-
+// function to gather score (the time that is left) 
 function getScore() {
     var remainingTime = seconds;
     score = remainingTime;
     return remainingTime;
 }
 
+// function to display score (time left) on the final score section
 function showScore() {
     let remainingTime = getScore();
     displayScore.innerHTML = ("Your Score: " + remainingTime)
 }
 
+// function to gather the user input name and score into localStorage
 function gatherToStorage() {
     let name = document.getElementById("inputtext").value;
     let remainingTime = getScore();
@@ -157,6 +163,7 @@ function gatherToStorage() {
     console.log(name);
 }
 
+// function to start timer when you begin the game
 function startTimer() {
     const countdownTimer = setInterval(() => {
         seconds--;
@@ -175,6 +182,7 @@ function startTimer() {
     }, 1000);
 };
 
+// function that adds start button feature
 function startButton() {
     const startBtn = document.getElementById("start-button");
     startBtn.addEventListener("click", function () {
@@ -189,6 +197,7 @@ function startButton() {
     });
 }
 
+// displays the high score section
 function showHighScore() {
     for (let i = 0; i < highScoreSection.length; ++i) {
         highScoreSection[i].style.display = "block";
@@ -196,6 +205,7 @@ function showHighScore() {
     hideFinalScore();
 };
 
+// tbd
 function scoreList() {
     const scoreListElement = document.getElementById("listScore");
 
@@ -207,6 +217,7 @@ function scoreList() {
     }
 }
 
+// displays the final score section
 function showFinalScore() {
     for (let i = 0; i < finalScoreSection.length; ++i) {
         finalScoreSection[i].style.display = "block";
@@ -226,6 +237,7 @@ function showFinalScore() {
     
 }
 
+// displays the high score section
 function viewHighScore() {
     viewbtn.addEventListener("click", function () {
         hideQuiz();
@@ -235,12 +247,14 @@ function viewHighScore() {
     })
 }
 
+// displays the start section
 function showStart() {
     for (let i = 0; i < startSection.length; ++i) {
         startSection[i].style.display = "flex";
     };
 }
 
+// nct
 function returnBtn() {
     let returnbtn = document.querySelector(".return");
     returnbtn.addEventListener("click", function () {

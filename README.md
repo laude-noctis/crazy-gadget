@@ -1,3 +1,9 @@
 # Crazy-Gadget
-module 4 Assignment
-Code I sourced out for help: https://www.youtube.com/watch?v=PBcqGxrr9g8&t=1032s
+
+## Description
+This quiz was created through JavaScript to test your knowledge. During this multiple choice test, 
+it keeps track of your score and if you answer wrong it will deduct 7 seconds from the time.
+
+## Credits
+A video I sourced out for help: https://www.youtube.com/watch?v=PBcqGxrr9g8&t=1032s 
+JavaScript Lines 113-117, 119-13; TimeStamp for Video: 16:46 - 23:19;
