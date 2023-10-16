@@ -86,6 +86,21 @@ function hideStart() {
     // hides the start menu
 }
 
+// displays the question
+function showQuestions() {
+    let currentQuestion = questions[questionIndex];
+    quizQuestion.innerHTML = currentQuestion.question;
+
+    removeBtns();
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        quizAnswer.appendChild(button);
+    });
+    nextQuestion();
+}
+
 // function that displays the next question with answers and keeps track if answered correctly
 function nextQuestion() {
     const btns = document.getElementsByClassName('btn');
@@ -105,32 +120,37 @@ function nextQuestion() {
                 showQuestions();
             } else {
                 showFinalScore()
+
             }
         }
         )
     };
 }
 
+// function to start timer when you begin the game
+function startTimer() {
+    const countdownTimer = setInterval(() => {
+        seconds--;
+        timerElement.textContent = "Timer: " + seconds;
+
+        if (seconds === 0) {
+            clearInterval(countdownTimer);
+            console.log("Countdown finished");
+            gameOver();
+        }
+
+        if (questionIndex >= questions.length) {
+            clearInterval(countdownTimer);
+            getScore();
+        }
+    }, 1000);
+};
+
 // removes the htmlpage added buttons
 function removeBtns() {
     while (quizAnswer.firstChild) {
         quizAnswer.removeChild(quizAnswer.firstChild)
     }
-}
-
-// displays the question
-function showQuestions() {
-    let currentQuestion = questions[questionIndex];
-    quizQuestion.innerHTML = currentQuestion.question;
-
-    removeBtns();
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        quizAnswer.appendChild(button);
-    });
-    nextQuestion();
 }
 
 // function if time runs out
@@ -158,29 +178,11 @@ function showScore() {
 function gatherToStorage() {
     let name = document.getElementById("inputtext").value;
     let remainingTime = getScore();
-  
+
     localStorage.setItem(name, remainingTime);
     console.log(name);
 }
 
-// function to start timer when you begin the game
-function startTimer() {
-    const countdownTimer = setInterval(() => {
-        seconds--;
-        timerElement.textContent = "Timer: " + seconds;
-
-        if (seconds === 0) {
-            clearInterval(countdownTimer);
-            console.log("Countdown finished");
-            gameOver();
-        }
-
-        if (questionIndex >= questions.length) {
-            clearInterval(countdownTimer);
-            getScore();
-        }
-    }, 1000);
-};
 
 // function that adds start button feature
 function startButton() {
@@ -205,15 +207,23 @@ function showHighScore() {
     hideFinalScore();
 };
 
-// tbd
+// retireves info from localStorage to display scores
 function scoreList() {
     const scoreListElement = document.getElementById("listScore");
 
-    for (let i = 0; i < scoreListElement.length; ++i) {
-        const highScoreRecords = scoreListElement[i];
+    // iterate localStorage
+    for (let i = 0; i < localStorage.length; i++) {
         const li = document.createElement("li");
-        li.textContent = highScoreRecords;
+        // set iteration key name
+        const key = localStorage.key(i);
+
+        // use key name to retrieve the corresponding value
+        const value = localStorage.getItem(key);
+        li.textContent = key + ": " + value;
         scoreListElement.appendChild(li);
+
+        // console.log the iteration key and value
+        console.log('Key: ' + key + ', Value: ' + value);
     }
 }
 
@@ -229,12 +239,11 @@ function showFinalScore() {
     let formId = document.getElementById("scoretracker");
     formId.addEventListener("submit", function (event) {
         event.preventDefault();
+        gatherToStorage();
         scoreList();
         showHighScore();
-        gatherToStorage();
     });
     showScore();
-    
 }
 
 // displays the high score section
@@ -244,6 +253,7 @@ function viewHighScore() {
         hideFinalScore();
         hideStart();
         showHighScore();
+        scoreList();
     })
 }
 
@@ -254,7 +264,7 @@ function showStart() {
     };
 }
 
-// nct
+// function of the button on the high score page to return to the beginning of quiz
 function returnBtn() {
     let returnbtn = document.querySelector(".return");
     returnbtn.addEventListener("click", function () {
