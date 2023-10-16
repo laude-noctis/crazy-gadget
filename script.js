@@ -51,11 +51,14 @@ let seconds = 60;
 let score = 0;
 let questionIndex = 0;
 let response = document.querySelector(".response")
+let viewbtn = document.querySelector(".view");
+let nameRecord = [];
 const timerElement = document.getElementById('timer');
 const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
+const displayScore = document.getElementById("score")
 
 function hideQuiz() {
     for (let i = 0; i < quizSection.length; ++i) {
@@ -81,6 +84,7 @@ function hideStart() {
     // hides the start menu
 }
 
+
 function nextQuestion() {
     const btns = document.getElementsByClassName('btn');
     for (let i = 0; i < btns.length; ++i) {
@@ -101,7 +105,8 @@ function nextQuestion() {
                 showFinalScore()
             }
         }
-    )};
+        )
+    };
 }
 
 function removeBtns() {
@@ -131,10 +136,22 @@ function gameOver() {
     showFinalScore();
 }
 
+
 function getScore() {
-    let remainingTime = seconds;
+    var remainingTime = seconds;
     score = remainingTime;
+    return remainingTime;
+}
+
+function nameScore() {
+    let names = form.querySelector("#scoretracker")
+    var remainingTime = getScore()
+
     console.log(remainingTime)
+
+    displayScore.innerHTML = ("Your Score: " + remainingTime)
+    
+    localStorage.setItem(names, getScore());
 }
 
 function startTimer() {
@@ -155,18 +172,19 @@ function startTimer() {
     }, 1000);
 };
 
-
-const startBtn = document.getElementById("start-button");
-startBtn.addEventListener("click", function () {
-    const quizSection = document.getElementsByClassName("quiz");
-    for (let i = 0; i < quizSection.length; ++i) {
-    quizSection[i].style.display = "block";
-    };
-    hideStart();
-    startTimer();
-    showQuestions();
-});
-
+function startButton() {
+    const startBtn = document.getElementById("start-button");
+    startBtn.addEventListener("click", function () {
+        const quizSection = document.getElementsByClassName("quiz");
+        for (let i = 0; i < quizSection.length; ++i) {
+            quizSection[i].style.display = "block";
+        };
+        hideStart();
+        startTimer();
+        showQuestions();
+        viewbtn.disabled = true;
+    });
+}
 
 function showHighScore() {
     for (let i = 0; i < highScoreSection.length; ++i) {
@@ -175,16 +193,14 @@ function showHighScore() {
     hideFinalScore();
 };
 
-const highScoreRecord= [];
-
 function scoreList() {
     const scoreListElement = document.getElementById("listScore");
-  
-    for (let i = 0; i < highScoreRecord.length; ++i) {
-      const highScoreRecords = highScoreRecord[i];
-      const li = document.createElement("li");
-      li.textContent = highScoreRecords;
-      scoreListElement.appendChild(li);
+
+    for (let i = 0; i < scoreListElement.length; ++i) {
+        const highScoreRecords = scoreListElement[i];
+        const li = document.createElement("li");
+        li.textContent = highScoreRecords;
+        scoreListElement.appendChild(li);
     }
 }
 
@@ -193,6 +209,7 @@ function showFinalScore() {
         finalScoreSection[i].style.display = "block";
     };
 
+    viewbtn.disabled = false;
     hideQuiz();
 
     let formId = document.getElementById("scoretracker");
@@ -201,14 +218,14 @@ function showFinalScore() {
         scoreList();
         showHighScore();
     });
+    nameScore();
 }
 
 function viewHighScore() {
-    let viewbtn = document.querySelector(".view");
-    viewbtn.addEventListener("click", function() {
+    viewbtn.addEventListener("click", function () {
         hideQuiz();
         hideFinalScore();
-        hideStart(); 
+        hideStart();
         showHighScore();
     })
 }
@@ -221,7 +238,7 @@ function showStart() {
 
 function returnBtn() {
     let returnbtn = document.querySelector(".return");
-    returnbtn.addEventListener("click", function() {
+    returnbtn.addEventListener("click", function () {
         location.reload();
     })
 }
@@ -232,3 +249,4 @@ hideHighScore();
 
 viewHighScore();
 returnBtn();
+startButton();
