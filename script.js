@@ -269,6 +269,7 @@ function returnBtn() {
     })
 }
 
+//function to clear localStorage (scoreboard)
 function clearStorage() {
     let clearStorage = document.querySelector("#eraseScore")
     clearStorage.addEventListener("click", function () {
