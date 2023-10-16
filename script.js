@@ -53,6 +53,7 @@ let questionIndex = 0;
 let response = document.querySelector(".response")
 let viewbtn = document.querySelector(".view");
 let nameRecord = [];
+let names = document.getElementById("inputtext").value;
 const timerElement = document.getElementById('timer');
 const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
@@ -143,15 +144,22 @@ function getScore() {
     return remainingTime;
 }
 
-function nameScore() {
-    let names = form.querySelector("#scoretracker")
-    var remainingTime = getScore()
+var remainingTime = getScore()
+function showScore() {
 
     console.log(remainingTime)
 
     displayScore.innerHTML = ("Your Score: " + remainingTime)
-    
-    localStorage.setItem(names, getScore());
+}
+
+function gatherToStorage() {
+    let recordNames = names;
+
+    String(recordNames);
+    String(remainingTime);
+
+    localStorage.setItem(recordNames, remainingTime)
+    console.log(recordNames);
 }
 
 function startTimer() {
@@ -217,8 +225,10 @@ function showFinalScore() {
         event.preventDefault();
         scoreList();
         showHighScore();
+        gatherToStorage();
     });
-    nameScore();
+    showScore();
+    
 }
 
 function viewHighScore() {
