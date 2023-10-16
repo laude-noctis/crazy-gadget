@@ -1,5 +1,5 @@
 * {
-    font-family: Georgia, 'Times New Roman', Times, serif
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 header {
@@ -16,8 +16,8 @@ label {
 }
 
 .card {
+    display: flex;
     height: 500px;
-    width: 800px;
 }
 
 h1 {
@@ -98,3 +98,4 @@ main {
 button:hover {
     cursor: pointer;
 }
+

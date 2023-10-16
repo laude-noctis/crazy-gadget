@@ -144,22 +144,17 @@ function getScore() {
     return remainingTime;
 }
 
-var remainingTime = getScore()
 function showScore() {
-
-    console.log(remainingTime)
-
+    let remainingTime = getScore();
     displayScore.innerHTML = ("Your Score: " + remainingTime)
 }
 
 function gatherToStorage() {
-    let recordNames = names;
-
-    String(recordNames);
-    String(remainingTime);
-
-    localStorage.setItem(recordNames, remainingTime)
-    console.log(recordNames);
+    let name = document.getElementById("inputtext").value;
+    let remainingTime = getScore();
+  
+    localStorage.setItem(name, remainingTime);
+    console.log(name);
 }
 
 function startTimer() {
