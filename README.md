@@ -10,3 +10,4 @@ JavaScript Lines 113-117, 119-13; TimeStamp for Video: 16:46 - 23:19;
 
 A webpage I sourced out for help: https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance
 JavaScript: 211-228
+![Photo of Quiz](./images/Screenshot(18).png)

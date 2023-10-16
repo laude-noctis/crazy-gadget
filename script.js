@@ -52,7 +52,6 @@ let score = 0;
 let questionIndex = 0;
 let response = document.querySelector(".response")
 let viewbtn = document.querySelector(".view");
-let nameRecord = [];
 let names = document.getElementById("inputtext").value;
 const timerElement = document.getElementById('timer');
 const quizSection = document.getElementsByClassName("quiz");
@@ -153,7 +152,7 @@ function removeBtns() {
     }
 }
 
-// function if time runs out
+// function if timer runs out
 function gameOver() {
     hideQuiz();
     hideHighScore();
@@ -182,7 +181,6 @@ function gatherToStorage() {
     localStorage.setItem(name, remainingTime);
     console.log(name);
 }
-
 
 // function that adds start button feature
 function startButton() {
@@ -233,7 +231,6 @@ function showFinalScore() {
         finalScoreSection[i].style.display = "block";
     };
 
-    viewbtn.disabled = false;
     hideQuiz();
 
     let formId = document.getElementById("scoretracker");
@@ -272,10 +269,22 @@ function returnBtn() {
     })
 }
 
+function clearStorage() {
+    let clearStorage = document.querySelector("#eraseScore")
+    clearStorage.addEventListener("click", function () {
+        localStorage.clear();
+        const ulElement = document.querySelector("ul");
+        while (ulElement.firstChild) {
+            ulElement.removeChild(ulElement.firstChild);
+        }
+    })
+}
+
 hideQuiz()
 hideFinalScore();
 hideHighScore();
 
 viewHighScore();
 returnBtn();
+clearStorage();
 startButton();
