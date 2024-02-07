@@ -58,7 +58,7 @@ const quizSection = document.getElementsByClassName("quiz");
 const finalScoreSection = document.getElementsByClassName("final-score");
 const highScoreSection = document.getElementsByClassName("high-score");
 const startSection = document.getElementsByClassName("start");
-const displayScore = document.getElementById("score")
+const displayScore = document.getElementById("score");
 
 // functions to hide each section of the page
 function hideQuiz() {

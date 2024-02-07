@@ -17,3 +17,4 @@ JavaScript: 211-228
 Webpage: https://lizziebumpers.github.io/crazy-gadget/
 
 ![Photo of Quiz](/images/screenshot.png)
+
